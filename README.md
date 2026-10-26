@@ -31,3 +31,6 @@ Your CAC's private key remains on the card. To sign, first save the document wit
 - PDF signature field creation uses pyHanko; CAC signing requires compatible middleware and is not yet verified on your reader.
 - PDF forms and signature fields should be added before signing.
 - Local-only processing does not itself authorize handling classified/CUI/official documents on personal equipment; follow applicable DoD/USAF handling policies.
+
+## Branding
+The app displays `assets/forgepdf-logo.png` as a small 32px status-bar logo and as its window icon when the file exists. If absent, the app still runs normally. Use a transparent PNG for best results.
