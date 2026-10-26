@@ -4,7 +4,7 @@ import pymupdf as fitz
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QAction, QImage, QPixmap
 from PySide6.QtWidgets import (QApplication,QMainWindow,QWidget,QHBoxLayout,QVBoxLayout,QLabel,
-    QListWidget,QPushButton,QFileDialog,QMessageBox,QInputDialog,QScrollArea,QToolBar)
+    QListWidget,QLineEdit,QPushButton,QFileDialog,QMessageBox,QInputDialog,QScrollArea,QToolBar)
 
 class ForgePDF(QMainWindow):
     def __init__(self):
