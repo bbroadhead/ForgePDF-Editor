@@ -2,7 +2,7 @@ import sys
 from pathlib import Path
 import pymupdf as fitz
 from PySide6.QtCore import Qt
-from PySide6.QtGui import QAction, QImage, QPixmap
+from PySide6.QtGui import QAction, QImage, QPixmap, QIcon
 from PySide6.QtWidgets import (QApplication,QMainWindow,QWidget,QHBoxLayout,QVBoxLayout,QLabel,
     QListWidget,QLineEdit,QPushButton,QFileDialog,QMessageBox,QInputDialog,QScrollArea,QToolBar)
 
@@ -17,6 +17,9 @@ class ForgePDF(QMainWindow):
         self.mode=None
         self.zoom=1.25
         self.make_ui()
+        logo_path=Path(__file__).resolve().parent / 'assets' / 'forgepdf-logo.png'
+        if logo_path.exists():
+            self.setWindowIcon(QIcon(str(logo_path)))
     def make_ui(self):
         bar=QToolBar("Tools")
         self.addToolBar(bar)
@@ -40,6 +43,12 @@ class ForgePDF(QMainWindow):
         self.viewer.mousePressEvent=self.canvas_click
         scroll=QScrollArea();scroll.setWidgetResizable(True);scroll.setWidget(self.viewer)
         layout.addWidget(scroll,4)
+        brand=QLabel()
+        logo_path=Path(__file__).resolve().parent / "assets" / "forgepdf-logo.png"
+        if logo_path.exists():
+            brand.setPixmap(QPixmap(str(logo_path)).scaled(32,32,Qt.KeepAspectRatio,Qt.SmoothTransformation))
+            brand.setToolTip("ForgePDF Editor")
+            self.statusBar().addPermanentWidget(brand)
         self.statusBar().showMessage("Local processing only. Finish editing before CAC signing.")
     def set_mode(self,mode):
         if not self.doc.page_count:return
